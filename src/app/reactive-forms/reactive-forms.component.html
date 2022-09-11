@@ -1,0 +1,33 @@
+<form action="submit" [formGroup]="cadastroForm" (ngSubmit)="submitForm()">
+  <fieldset>
+    <div>
+      <div>
+        <label for="firstName">Nome</label>
+        <input id="firstName" type="text" formControlName="firstName">
+        <span class="alert" *ngIf="cadastroForm.get('firstName')?.errors && (cadastroForm.get('firstName')?.touched || cadastroForm.get('firstName')?.dirty)">
+          Por favor preencher o nome
+        </span>
+      </div>
+
+      <br>
+
+      <div>
+        <label for="">Sobrenome</label>
+        <input type="text" formControlName="lastName">
+      </div>
+
+      <br>
+      <br>
+
+    </div>
+  </fieldset>
+
+  <!-- <p>{{ cadastroForm.get("firstName")?.value }}</p> -->
+  <p>{{ cadastroForm.get("firstName")?.errors | json }}</p>
+  <!-- touched => quando tocar no celular quando clicar na web -->
+  <p>{{ cadastroForm.get("firstName")?.touched | json }}</p>
+  <!-- dirty => sujar quando estiver preenchido -->
+  <p>{{ cadastroForm.get("firstName")?.dirty | json }}</p>
+
+  <button>enviar</button>
+</form>
