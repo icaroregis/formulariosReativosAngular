@@ -4,6 +4,7 @@
       <div>
         <label for="firstName">Nome</label>
         <input id="firstName" type="text" formControlName="firstName">
+
         <span class="alert" *ngIf="cadastroForm.get('firstName')?.errors && (cadastroForm.get('firstName')?.touched || cadastroForm.get('firstName')?.dirty)">
           Por favor preencher o nome
         </span>
@@ -13,21 +14,33 @@
 
       <div>
         <label for="">Sobrenome</label>
-        <input type="text" formControlName="lastName">
+        <input type="text" formControlName="lastName" maxlength="5">
+
+        <span class="alert" *ngIf="cadastroForm.get('lastName')?.errors && (cadastroForm.get('lastName')?.touched || cadastroForm.get('lastName')?.dirty)">
+          <!-- aqui estamos pegando a propriedade lastName, acessando os erros e a quantidade mínima esta sendo delimitada -->
+          Por favor deve ter no mínimo 5 e você já digitou:
+          {{ cadastroForm.get("lastName")?.errors?.['minlength']?.actualLength }}
+        </span>
       </div>
 
       <br>
-      <br>
+
+      <div>
+        <label for="email">Sobrenome</label>
+        <input id="email" type="text" formControlName="email">
+      </div>
 
     </div>
   </fieldset>
 
   <!-- <p>{{ cadastroForm.get("firstName")?.value }}</p> -->
-  <p>{{ cadastroForm.get("firstName")?.errors | json }}</p>
+  <!-- <p>{{ cadastroForm.get("firstName")?.errors | json }}</p> -->
   <!-- touched => quando tocar no celular quando clicar na web -->
-  <p>{{ cadastroForm.get("firstName")?.touched | json }}</p>
+  <!-- <p>{{ cadastroForm.get("firstName")?.touched | json }}</p> -->
   <!-- dirty => sujar quando estiver preenchido -->
-  <p>{{ cadastroForm.get("firstName")?.dirty | json }}</p>
+  <!-- <p>{{ cadastroForm.get("firstName")?.dirty | json }}</p> -->
+  <!-- <p>{{ cadastroForm.get("lastName")?.errors | json}}</p> -->
+  <p>{{ cadastroForm.get("email")?.errors | json}}</p>
 
-  <button>enviar</button>
+  <button [disabled]="cadastroForm.invalid">enviar</button>
 </form>
